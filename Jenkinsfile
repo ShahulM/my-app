@@ -21,11 +21,11 @@ node{
    withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
    sh "docker login -u jjaba -p ${dockerPassword}"
     }
-   sh 'docker push saidamo/myweb:0.0.2'
+   sh 'docker push jjaba/myweb:0.0.2'
    }
    stage('Nexus Image Push'){
    sh "docker login -u admin -p admin123 3.109.217.180:8083"
-   sh "docker tag saidamo/myweb:0.0.2 3.109.217.180:8083/damo:1.0.0"
+   sh "docker tag jjaba/myweb:0.0.2 3.109.217.180:8083/damo:1.0.0"
    sh 'docker push 3.109.217.180:8083/damo:1.0.0'
    }
    stage('Remove Previous Container'){
