@@ -24,7 +24,7 @@ node{
    sh 'docker push jjaba/myweb:0.0.2'
    }
    stage('Aravinth Nexus Image Push'){
-   sh "docker login -u admin -p admin@123 ubuntunexus.local:8087"
+   sh "docker login -u admin -p Admin@123 ubuntunexus.local:8087"
    sh "docker tag jjaba/myweb:0.0.2 ubuntunexus.local:8087/damo:1.0.0"
    sh 'docker push ubuntunexus.local:8087/damo:1.0.0'
    }
