@@ -15,17 +15,17 @@ node{
 	        }
 	    }
    stage('Shahul Build Docker Imager'){
-   sh 'docker build -t jjaba/myweb:0.0.2 .'
+   sh 'docker build -t shahul06/myweb:0.0.2 .'
    }
    stage('Shahul Docker Image Push'){
    withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
-   sh "docker login -u jjaba -p ${dockerPassword}"
+   sh "docker login -u shahul06 -p ${dockerPassword}"
     }
-   sh 'docker push jjaba/myweb:0.0.2'
+   sh 'docker push shahul06/myweb:0.0.2'
    }
    stage('Shahul Nexus Image Push'){
    sh "docker login -u admin -p Admin@123 ubuntunexus.local:8087"
-   sh "docker tag jjaba/myweb:0.0.2 ubuntunexus.local:8087/damo:1.0.0"
+   sh "docker tag shahul06/myweb:0.0.2 ubuntunexus.local:8087/damo:1.0.0"
    sh 'docker push ubuntunexus.local:8087/damo:1.0.0'
    }
    stage('Shahul Remove Previous Container'){
@@ -35,7 +35,7 @@ node{
 		//  do nothing if there is an exception
 	}
    stage('Shahul Docker deployment'){
-   sh 'docker run -d -p 8090:8080 --name tomcattest jjaba/myweb:0.0.2' 
+   sh 'docker run -d -p 8090:8080 --name tomcattest shahul06/myweb:0.0.2' 
    }
 }
 }
